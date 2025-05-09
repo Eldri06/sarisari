@@ -224,21 +224,26 @@ require_once '../includes/header.php';
   </section>
 
   <!-- Join Community Section -->
-  <section class="join-community">
-    <div class="container">
-      <div class="join-content">
-        <h2 class="section-title">Join Our Growing Community</h2>
-        <p>Connect with storytellers from across the Philippines and the diaspora. Share your own narratives, discover local traditions, and celebrate the vibrant tapestry of Filipino culture.</p>
-        <div class="join-buttons">
-          <button class="primary-btn">Sign Up</button>
-          <button class="secondary-btn">Learn More</button>
-        </div>
-      </div>
-      <div class="join-image">
-        <img src="images/community.jpg" alt="Filipino Community Celebration">
+<section class="join-community">
+  <div class="container">
+    <div class="join-content">
+      <h2 class="section-title">Join Our Growing Community</h2>
+      <p>Connect with storytellers from across the Philippines and the diaspora. Share your own narratives, discover local traditions, and celebrate the vibrant tapestry of Filipino culture.</p>
+      <div class="join-buttons">
+        <?php if (!isset($_SESSION['user'])): ?>
+          <a href="register.php" class="primary-btn">Sign Up</a>
+        <?php else: ?>
+          <a href="discover.php" class="primary-btn">Explore</a>
+        <?php endif; ?>
+        <a href="#featured-section" class="secondary-btn">Learn More</a>
       </div>
     </div>
-  </section>
+    <div class="join-image">
+      <img src="images/community.jpg" alt="Filipino Community Celebration">
+    </div>
+  </div>
+</section>
+
 
   <!-- Newsletter Section -->
   <section class="newsletter">

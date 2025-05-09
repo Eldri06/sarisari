@@ -3,7 +3,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Handle header transparency on scroll
+    // transparent header on scroll
     const header = document.getElementById('main-header');
     if (header) {
         window.addEventListener('scroll', function() {
@@ -46,10 +46,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.querySelectorAll('.profile-tabs a').forEach(t => t.classList.remove('active'));
                 document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
                 
-                // Add active class to clicked tab
+            
                 this.classList.add('active');
                 
-                // Show corresponding content
+                
                 const tabId = this.getAttribute('href');
                 document.querySelector(tabId).classList.add('active');
             });

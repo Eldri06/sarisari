@@ -1,16 +1,16 @@
 <?php
 /**
- * Database connection for SariSari Stories
- * MySQL version
+ * Database connecciton for SariSari Stories
+ * 
  */
 
 require_once 'config.php';
 
 /**
- * Connect to the database using PDO
+ *
  * 
- * @return PDO Database connection object
- * @throws PDOException if connection fails
+ * @return PDO PDO instance
+ * @throws PDOException
  */
 function db_connect() {
     static $pdo;
@@ -164,8 +164,8 @@ function execute_query($sql, $params = []) {
 }
 
 /**
- * Create tables if they don't exist (initialization)
- * MySQL version
+ * Create tables if they dont exiest (initialization)
+ * 
  */
 function init_database() {
     try {
@@ -267,6 +267,6 @@ function init_database() {
     }
 }
 
-// Initialize database on first include
+// Initialize the database
 init_database();
 ?>

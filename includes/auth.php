@@ -3,7 +3,7 @@
  * Authentication functions for SariSari Stories
  */
 
-// Include database connection and helper functions
+// Include db
 require_once 'db.php';
 
 /**
@@ -13,7 +13,7 @@ require_once 'db.php';
  * @param string $email Email address
  * @param string $password Password
  * @param string $full_name Full name
- * @return int|string User ID on success, error message on failure
+ * @return int|string User ID on successss  error msg on failure
  */
 function register_user($username, $email, $password, $full_name) {
     // Validate input
@@ -129,7 +129,7 @@ function is_logged_in() {
     if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) {
         // Check for session timeout
         if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > SESSION_TIMEOUT)) {
-            // Session expired, log out
+            // Session expired log out
             logout();
             return false;
         }
@@ -180,7 +180,7 @@ function update_profile($user_id, $data) {
     
     $update_data = [];
     
-    // Handle username update
+    //  username update
     if (isset($data['username']) && !empty($data['username'])) {
         // Check if username already exists (excluding current user)
         $existing = check_existing_user($data['username'], '', $user_id);
@@ -192,13 +192,13 @@ function update_profile($user_id, $data) {
         $update_data['username'] = $data['username'];
     }
     
-    // Handle email update
+    //  email update
     if (isset($data['email']) && !empty($data['email'])) {
         if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
             return "Invalid email format";
         }
         
-        // Check if email already exists (excluding current user)
+        // Check if email already exists walay apil current usesr
         $existing = check_existing_user('', $data['email'], $user_id);
         
         if ($existing['email']) {
@@ -208,17 +208,17 @@ function update_profile($user_id, $data) {
         $update_data['email'] = $data['email'];
     }
     
-    // Handle full name update
+    //  full name update
     if (isset($data['full_name']) && !empty($data['full_name'])) {
         $update_data['full_name'] = $data['full_name'];
     }
     
-    // Handle bio update
+    //  bio update
     if (isset($data['bio'])) {
         $update_data['bio'] = $data['bio'];
     }
     
-    // Handle password update
+    //  password update
     if (isset($data['password']) && !empty($data['password'])) {
         if (strlen($data['password']) < 8) {
             return "Password must be at least 8 characters long";
@@ -227,12 +227,12 @@ function update_profile($user_id, $data) {
         $update_data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
     }
     
-    // Handle profile image update
+    //  profile image update
     if (isset($data['profile_image']) && !empty($data['profile_image'])) {
         $update_data['profile_image'] = $data['profile_image'];
     }
     
-    // Check if there's anything to update
+    // Check if theres anything to update
     if (empty($update_data)) {
         return "No changes made";
     }
@@ -244,7 +244,7 @@ function update_profile($user_id, $data) {
         return "Update failed. Please try again.";
     }
     
-    // If the current user is being updated, refresh session data
+    // If the current user is being updated refresh session data
     if (is_logged_in() && $_SESSION['user']['id'] == $user_id) {
         get_current_user_data(true);
     }
@@ -263,7 +263,7 @@ function logout() {
         session_start();
     }
     
-    // Unset all session variables
+    
     $_SESSION = [];
     
     // Destroy the session
@@ -278,7 +278,7 @@ function logout() {
  */
 function require_login($redirect_url = 'login.php') {
     if (!is_logged_in()) {
-        header("Location: $redirect_url");
+        header("Location: index.php?redirect=" . urlencode($redirect_url));
         exit;
     }
 }

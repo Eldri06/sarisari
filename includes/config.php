@@ -1,21 +1,21 @@
 <?php
 /**
  * Configuration file for SariSari Stories
- * MySQL version
+ *
  */
 
-// Database configuration - using MySQL
-define('DB_SERVER', 'localhost');     // Change to your MySQL server address
-define('DB_PORT', '3307');            // Standard MySQL port
-define('DB_USERNAME', 'root');        // Change to your MySQL username
-define('DB_PASSWORD', '');            // Change to your MySQL password
-define('DB_NAME', 'sarisari');        // Change to your database name
-define('DB_TYPE', 'mysql');           // Changed from 'pgsql' to 'mysql'
+// Database configuration mysql
+define('DB_SERVER', 'localhost');     
+define('DB_PORT', '3307');            
+define('DB_USERNAME', 'root');        
+define('DB_PASSWORD', '');           
+define('DB_NAME', 'sarisari');        
+define('DB_TYPE', 'mysql');           
 
 // Site configuration
 define('SITE_NAME', 'SariSari Stories');
 define('SITE_DESCRIPTION', 'A vibrant Filipino community platform for sharing personal narratives, hidden gems, local cuisine, events, and traditions.');
-define('SITE_URL', 'http://localhost/sarisari'); // Replace with your actual URL in production
+define('SITE_URL', 'http://localhost/sarisari'); 
 
 // Paths
 define('ROOT_PATH', dirname(__DIR__) . '/');
@@ -31,10 +31,10 @@ define('CONTACT_EMAIL', 'contact@sarisari-stories.com');
 define('POSTS_PER_PAGE', 9);
 define('ENABLE_REGISTRATION', true);
 
-// Session timeout (in seconds)
-define('SESSION_TIMEOUT', 1800); // 30 minutes
+// Session timeout in seconds
+define('SESSION_TIMEOUT', 1800); // 30 minutes 1800 second i think
 
-// Error reporting - set to 0 in production
+// Error reporting 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ?>

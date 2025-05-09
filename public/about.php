@@ -29,7 +29,7 @@ require_once '../includes/header.php';
     <div class="about-content">
       <div class="about-section">
         <div class="about-image">
-          <img src="https://images.unsplash.com/photo   -1531186551982-0b5dabf7cb46?w=800&auto=format&fit=crop" alt="Filipino community sharing stories">
+          <img src="https://images.unsplash.com/photo-1455849318743-b2233052fcff?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Filipino community sharing stories">
         </div>
         
         <div class="about-text">
@@ -41,7 +41,7 @@ require_once '../includes/header.php';
       
       <div class="about-section reversed">
         <div class="about-image">
-          <img src="https://images.unsplash.com/photo-1594103577079-b9d82a4846c4?w=800&auto=format&fit=crop" alt="Filipino cultural celebration">
+          <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Filipino cultural celebration">
         </div>
         
         <div class="about-text">

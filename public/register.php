@@ -1,17 +1,17 @@
 <?php
-// Include configuration and functions
+
 require_once '../includes/config.php';
 require_once '../includes/functions.php';
 require_once '../includes/auth.php';
 
-// Start session if not already started
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
 // Redirect if already logged in
 if (is_logged_in()) {
-    header('Location: /');
+    header('Location: index.php');
     exit;
 }
 
@@ -23,16 +23,16 @@ $error = '';
 $success = false;
 $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : '/';
 
-// Process registration form submission
+// main bckend process regis 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get form inputs
+    // get fmorm inouts
     $username = sanitize($_POST['username']);
     $email = sanitize($_POST['email']);
     $full_name = sanitize($_POST['full_name']);
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
     
-    // Validate inputs
+    // validation
     if (empty($username) || empty($email) || empty($full_name) || empty($password) || empty($confirm_password)) {
         $error = 'All fields are required';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -51,9 +51,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($user) {
                 start_session($user);
                 
-                // Redirect to requested page or home
+                // Redirect to requested page or home redirect na pa index.php
                 $redirect = isset($_POST['redirect']) ? $_POST['redirect'] : '/';
-                header("Location: $redirect");
+                header("Location: index.php?redirect=" . urlencode($redirect));
                 exit;
             } else {
                 $success = true; // Registration successful but auto-login failed
@@ -68,17 +68,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Page title
 $page_title = 'Register - ' . SITE_NAME;
 
-// Additional head content
+// for bacgkround cover sa regis 
 $additional_head = <<<HTML
 <style>
     body {
-        background-color: var(--bg-light);
-        background-image: url('https://www.transparenttextures.com/patterns/rice-paper-3.png');
+       background-image: url('https://images.unsplash.com/photo-1669554017518-45d0337356f2?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&fbclid=IwZXh0bgNhZW0CMTEAAR7EkTCyoJl45dnNSSqM29mJADIB2MZK2rtUENzlVc4Re1QuIAta58IUndKjLQ_aem_1QH-HjkmCmede-BO5e-M5g');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
     }
 </style>
 HTML;
 
-// Include header (minimal version for auth pages)
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -98,7 +101,7 @@ HTML;
   <div class="auth-page">
     <div class="container">
       <div class="auth-container">
-        <div class="auth-form" style="max-width: 500px;">
+        <div class="auth-form" style="max-width: 800px;">
           <div class="logo" style="justify-content: center; margin-bottom: 20px;">
             <a href="/">
               <span>SariSari Stories</span>
