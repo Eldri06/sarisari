@@ -53,7 +53,7 @@ $nav_items = get_navigation_items();
         $current_page = basename($_SERVER['PHP_SELF']);
         
         foreach ($nav_items as $title => $url) :
-            $active_class = ($title == 'Home') ? 'active' : '';
+            $active_class = ($url == $current_page)? 'active' : '';
             // You can expand this to set active based on current page
         ?>
         <li><a href="<?php echo $url; ?>" class="<?php echo $active_class; ?>"><?php echo $title; ?></a></li>

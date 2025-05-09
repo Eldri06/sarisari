@@ -1,13 +1,13 @@
 <?php
-// Include configuration and functions
+
 require_once '../includes/config.php';
 require_once '../includes/functions.php';
 require_once '../includes/auth.php';
 
-// Require login to access this page
+
 require_login();
 
-// Start session if not already started
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -19,7 +19,7 @@ $user_id = $current_user['id'];
 // Get categories for the dropdown
 $categories = get_categories();
 
-// Check if this is an edit request
+// Check
 $is_edit = false;
 $story_id = null;
 $story = null;
@@ -34,13 +34,13 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
     if ($story) {
         $is_edit = true;
     } else {
-        // Story not found or doesn't belong to current user
-        header('Location: /profile.php');
+        // Story not found 
+        header('Location: profile.php');
         exit;
     }
 }
 
-// Initialize variables
+
 $title = $is_edit ? $story['title'] : '';
 $content = $is_edit ? $story['content'] : '';
 $category_id = $is_edit ? $story['category_id'] : '';
@@ -53,14 +53,14 @@ $error_message = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get form inputs
     $title = sanitize($_POST['title']);
-    $content = $_POST['content']; // Don't sanitize content here - we'll handle HTML
+    $content = $_POST['content']; 
     $category_id = (int)$_POST['category_id'];
     $status = $_POST['status'];
     
-    // Create slug from title
+   
     $slug = create_slug($title, 'stories', $is_edit ? $story_id : null);
     
-    // Validate inputs
+    // Validation
     if (empty($title) || empty($content) || empty($category_id)) {
         $error_message = "Please fill in all required fields.";
     } else {
@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Page title
 $page_title = $is_edit ? 'Edit Story - ' . SITE_NAME : 'Create Story - ' . SITE_NAME;
 
-// Additional head content for rich text editor (TinyMCE)
+// styles head content API (TinyMCE)
 $additional_head = <<<HTML
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>

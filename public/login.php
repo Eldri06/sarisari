@@ -4,18 +4,18 @@ require_once '../includes/config.php';
 require_once '../includes/functions.php';
 require_once '../includes/auth.php';
 
-// Start session if not already started
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
 // Redirect if already logged in
 if (is_logged_in()) {
-    header('Location: /');
+    header('Location: index.php');
     exit;
 }
 
-// Initialize variables
+
 $username_email = '';
 $error = '';
 $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : '/';
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username_email = sanitize($_POST['username_email']);
     $password = $_POST['password'];
     
-    // Validate inputs
+    // validation sa db
     if (empty($username_email) || empty($password)) {
         $error = 'All fields are required';
     } else {
@@ -34,34 +34,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = login_user($username_email, $password);
         
         if (is_array($result)) {
-            // Success - start session and redirect
+            // Success , get user data 
             start_session($result);
             
-            // Redirect to requested page or home
+            // Redirect sa index.php 
             $redirect = isset($_POST['redirect']) ? $_POST['redirect'] : '/';
-            header("Location: $redirect");
+            header("Location: index.php?redirect=" . urlencode($redirect));
             exit;
         } else {
-            // Error - display message
+            // Error msg
             $error = $result;
         }
     }
 }
 
-// Page title
+
 $page_title = 'Login - ' . SITE_NAME;
 
-// Additional head content
+// bg for login page
 $additional_head = <<<HTML
 <style>
     body {
-        background-color: var(--bg-light);
-        background-image: url('https://images.unsplash.com/photo-1669554017518-45d0337356f2?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&fbclid=IwZXh0bgNhZW0CMTEAAR7EkTCyoJl45dnNSSqM29mJADIB2MZK2rtUENzlVc4Re1QuIAta58IUndKjLQ_aem_1QH-HjkmCmede-BO5e-M5g');
-    }
+    background-image: url('https://images.unsplash.com/photo-1669554017518-45d0337356f2?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&fbclid=IwZXh0bgNhZW0CMTEAAR7EkTCyoJl45dnNSSqM29mJADIB2MZK2rtUENzlVc4Re1QuIAta58IUndKjLQ_aem_1QH-HjkmCmede-BO5e-M5g');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
 </style>
 HTML;
 
-// Include header (minimal version for auth pages)
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
