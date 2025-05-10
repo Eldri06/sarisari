@@ -2,6 +2,137 @@
  * Main JavaScript file for SariSari Stories
  */
 
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Story form submission
+    const storyForm = document.querySelector('form[enctype="multipart/form-data"]');
+    if (storyForm) {
+        console.log('Story form found, initializing handlers');
+        
+        // Make sure TinyMCE initializes properly
+        if (typeof tinymce !== 'undefined') {
+            // Wait for TinyMCE to initialize completely
+            const checkTinyMCE = setInterval(function() {
+                if (tinymce.get('content')) {
+                    console.log('TinyMCE editor initialized');
+                    clearInterval(checkTinyMCE);
+                    
+                    // Add change listener to ensure content is saved to form
+                    tinymce.get('content').on('change', function() {
+                        console.log('TinyMCE content changed, syncing to form');
+                        this.save();
+                    });
+                }
+            }, 500);
+        } else {
+            console.error('TinyMCE not loaded');
+        }
+        
+        // Handle form submission
+        storyForm.addEventListener('submit', function(e) {
+            console.log('Form submission started');
+            
+            // Make sure TinyMCE content is saved to textarea
+            if (typeof tinymce !== 'undefined' && tinymce.get('content')) {
+                console.log('Saving TinyMCE content to form');
+                tinymce.get('content').save();
+            }
+            
+            // Validate required fields
+            const title = document.getElementById('title');
+            const category = document.getElementById('category_id');
+            const contentArea = document.getElementById('content');
+            let hasErrors = false;
+            
+            if (!title || !title.value.trim()) {
+                console.error('Title is empty');
+                hasErrors = true;
+                // Add error highlight
+                title.classList.add('error-field');
+            } else {
+                title.classList.remove('error-field');
+            }
+            
+            if (!category || !category.value) {
+                console.error('Category not selected');
+                hasErrors = true;
+                // Add error highlight
+                category.classList.add('error-field');
+            } else {
+                category.classList.remove('error-field');
+            }
+            
+            // Check content from TinyMCE or textarea
+            let contentValue = '';
+            if (typeof tinymce !== 'undefined' && tinymce.get('content')) {
+                contentValue = tinymce.get('content').getContent();
+            } else if (contentArea) {
+                contentValue = contentArea.value;
+            }
+            
+            if (!contentValue.trim()) {
+                console.error('Content is empty');
+                hasErrors = true;
+                // Can't directly style TinyMCE, but can add a message
+                const contentError = document.createElement('div');
+                contentError.className = 'alert error';
+                contentError.textContent = 'Please enter some content for your story';
+                
+                // Remove any existing error message
+                const existingError = document.querySelector('.content-error');
+                if (existingError) existingError.remove();
+                
+                contentError.classList.add('content-error');
+                const editorParent = document.querySelector('.tox-tinymce').parentNode;
+                editorParent.insertBefore(contentError, document.querySelector('.tox-tinymce'));
+            } else {
+                // Remove any existing error message
+                const existingError = document.querySelector('.content-error');
+                if (existingError) existingError.remove();
+            }
+            
+            if (hasErrors) {
+                console.log('Form has validation errors, preventing submission');
+                e.preventDefault();
+                
+                // Show error message at the top
+                const formContainer = document.querySelector('.form-container');
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'alert error';
+                errorMessage.textContent = 'Please fill in all required fields.';
+                
+                // Remove any existing general error message
+                const existingGeneralError = document.querySelector('.general-error');
+                if (existingGeneralError) existingGeneralError.remove();
+                
+                errorMessage.classList.add('general-error');
+                formContainer.insertBefore(errorMessage, formContainer.firstChild);
+                
+                // Scroll to the top of the form
+                formContainer.scrollIntoView({ behavior: 'smooth' });
+                return false;
+            }
+            
+            console.log('Form validation passed, allowing submission');
+            return true;
+        });
+        
+        // Add styles for error fields
+        const style = document.createElement('style');
+        style.textContent = `
+            .error-field {
+                border: 2px solid #ff5252 !important;
+                background-color: #fff8f8 !important;
+            }
+            .content-error {
+                color: #ff5252;
+                margin-bottom: 10px;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     // transparent header on scroll
     const header = document.getElementById('main-header');
@@ -148,7 +279,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // Send AJAX request to add comment
-            fetch('/comment.php', {
+            fetch('comment.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -176,7 +307,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     // User not logged in or other error
                     if (data.message === 'login_required') {
-                        window.location.href = '/login.php?redirect=' + encodeURIComponent(window.location.href);
+                        window.location.href = 'login.php?redirect=' + encodeURIComponent(window.location.href);
                     } else {
                         alert('Error: ' + data.message);
                     }
@@ -202,7 +333,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // Send AJAX request to subscribe
-            fetch('/subscribe.php', {
+            fetch('subscribe.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',

@@ -386,7 +386,8 @@ function upload_image($file, $directory = 'uploads', $max_size = 5242880) {
         return false;
     }
     
-    return $directory . '/' . $new_filename;
+    return '/uploads/stories/' . $new_filename;
+
 }
 
 /**
@@ -527,9 +528,9 @@ function check_existing_user($username, $email, $exclude_id = null) {
 function get_navigation_items() {
     return [
         'Home' => '/',
-        'Discover' => '/discover.php',
-        'Featured' => '/discover.php?featured=1',
-        'About' => '/about.php'
+        'Discover' => 'discover.php',
+        'Featured' => 'discover.php?featured=1',
+        'About' => 'about.php'
     ];
 }
 
@@ -541,17 +542,17 @@ function get_navigation_items() {
 function get_footer_links() {
     return [
         'Company' => [
-            'About' => '/about.php',
-            'Community' => '/discover.php'
+            'About' => 'about.php',
+            'Community' => 'discover.php'
         ],
         'Helpful Links' => [
-            'Contact' => '/contact.php',
-            'FAQs' => '/faqs.php',
-            'Community Guidelines' => '/guidelines.php'
+            'Contact' => 'contact.php',
+            'FAQs' => 'faqs.php',
+            'Community Guidelines' => 'guidelines.php'
         ],
         'Legal' => [
-            'Privacy Policy' => '/privacy.php',
-            'Terms & Conditions' => '/terms.php'
+            'Privacy Policy' => 'privacy.php',
+            'Terms & Conditions' => 'terms.php'
         ]
     ];
 }

@@ -161,9 +161,9 @@ require_once '../includes/header.php';
       <div class="alert success">
         <?php echo $success_message; ?>
         <?php if ($is_edit && isset($story_id)): ?>
-          <p><a href="story.php?slug=<?php echo $slug; ?>">View your story</a> or <a href="/profile.php">go to your profile</a>.</p>
+          <p><a href="story.php?slug=<?php echo $slug; ?>">View your story</a> or <a href="profile.php">go to your profile</a>.</p>
         <?php elseif (isset($story_id)): ?>
-          <p><a href="story.php?id=<?php echo $story_id; ?>">View your story</a> or <a href="/create-story.php">create another story</a>.</p>
+          <p><a href="story.php?id=<?php echo $story_id; ?>">View your story</a> or <a href="create-story.php">create another story</a>.</p>
         <?php endif; ?>
       </div>
     <?php endif; ?>
