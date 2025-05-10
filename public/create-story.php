@@ -129,7 +129,7 @@ $page_title = $is_edit ? 'Edit Story - ' . SITE_NAME : 'Create Story - ' . SITE_
 
 // styles head content API (TinyMCE)
 $additional_head = <<<HTML
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/ezhv7stnj1p20njlyk17x9ax00ija0xu9j3e0wwa4ybxhe94/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
   tinymce.init({
     selector: '#content',
