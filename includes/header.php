@@ -65,7 +65,7 @@ $nav_items = get_navigation_items();
         <?php if ($current_user): ?>
           <div class="user-menu">
             <a href="#" class="user-menu-trigger">
-              <img src="<?php echo !empty($current_user['profile_image']) ? $current_user['profile_image'] : 'images/author1.jpg'; ?>" alt="<?php echo $current_user['username']; ?>" class="avatar-small">
+              <img src="<?php echo !empty($current_user['profile_image']) ? $current_user['profile_image'] : 'images/default-avatar.jpg'; ?>" alt="<?php echo $current_user['username']; ?>" class="avatar-small">
               <span><?php echo $current_user['username']; ?></span>
             </a>
             <div class="user-dropdown">

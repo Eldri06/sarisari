@@ -93,7 +93,7 @@ if (!$comment) {
 }
 
 // Create HTML for the new comment
-$profile_image = !empty($comment['profile_image']) ? $comment['profile_image'] : 'images/default-avatar.png';
+$profile_image = !empty($comment['profile_image']) ? $comment['profile_image'] : 'images/default-avatar.jpg';
 $html = <<<HTML
 <img src="{$profile_image}" alt="{$comment['full_name']}" class="comment-avatar">
 <div class="comment-content">

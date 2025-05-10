@@ -167,7 +167,7 @@ require_once '../includes/header.php';
     <?php endif; ?>
     
     <div class="profile-header">
-      <img src="<?php echo !empty($user['profile_image']) ? $user['profile_image'] : 'public/images/default-avatar.png'; ?>" alt="<?php echo $user['full_name']; ?>" class="profile-image">
+      <img src="<?php echo !empty($user['profile_image']) ? $user['profile_image'] : 'images/default-avatar.jpg'; ?>" alt="<?php echo $user['full_name']; ?>" class="profile-image">
       
       <div class="profile-info">
         <h1><?php echo $user['full_name']; ?></h1>

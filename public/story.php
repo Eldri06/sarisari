@@ -102,7 +102,7 @@ require_once '../includes/header.php';
         <div class="story-meta-info">
           <div class="author-info">
             <a href="profile.php?username=<?php echo $story['username']; ?>">
-              <img src="<?php echo !empty($story['author_image']) ? $story['author_image'] : 'images/default-avatar.png'; ?>" alt="<?php echo $story['author_name']; ?>" class="author-img-small">
+              <img src="<?php echo !empty($story['author_image']) ? $story['author_image'] : 'images/default-avatar.jpg'; ?>" alt="<?php echo $story['author_name']; ?>" class="author-img-small">
               <span><?php echo $story['author_name']; ?></span>
             </a>
           </div>
@@ -142,7 +142,7 @@ require_once '../includes/header.php';
       </div>
       
       <div class="author-box">
-        <img src="<?php echo !empty($author['profile_image']) ? $author['profile_image'] : 'images/default-avatar.png'; ?>" alt="<?php echo $author['full_name']; ?>" class="author-box-image">
+        <img src="<?php echo !empty($author['profile_image']) ? $author['profile_image'] : 'images/default-avatar.jpg'; ?>" alt="<?php echo $author['full_name']; ?>" class="author-box-image">
         
         <div class="author-box-info">
           <h3><a href="profile.php?username=<?php echo $author['username']; ?>"><?php echo $author['full_name']; ?></a></h3>
@@ -185,7 +185,7 @@ require_once '../includes/header.php';
           <?php else: ?>
             <?php foreach ($comments as $comment): ?>
               <div class="comment">
-                <img src="<?php echo !empty($comment['profile_image']) ? $comment['profile_image'] : 'images/default-avatar.png'; ?>" alt="<?php echo $comment['full_name']; ?>" class="comment-avatar">
+                <img src="<?php echo !empty($comment['profile_image']) ? $comment['profile_image'] : 'images/default-avatar.jpg'; ?>" alt="<?php echo $comment['full_name']; ?>" class="comment-avatar">
                 
                 <div class="comment-content">
                   <div class="comment-header">
@@ -221,7 +221,7 @@ require_once '../includes/header.php';
                     <h3><a href="story.php?slug=<?php echo $related_story['slug']; ?>"><?php echo $related_story['title']; ?></a></h3>
                     <div class="story-meta">
                       <div class="author">
-                        <img src="<?php echo !empty($related_story['author_image']) ? $related_story['author_image'] : 'images/default-avatar.png'; ?>" alt="<?php echo $related_story['author_name']; ?>">
+                        <img src="<?php echo !empty($related_story['author_image']) ? $related_story['author_image'] : 'images/default-avatar.jpg'; ?>" alt="<?php echo $related_story['author_name']; ?>">
                         <span><?php echo $related_story['author_name']; ?></span>
                       </div>
                       <div class="story-stats">

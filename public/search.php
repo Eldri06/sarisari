@@ -74,7 +74,7 @@ require_once '../includes/header.php';
                   <h3><a href="story.php?slug=<?php echo $story['slug']; ?>"><?php echo $story['title']; ?></a></h3>
                   <div class="story-meta">
                     <div class="author">
-                      <img src="<?php echo !empty($story['author_image']) ? $story['author_image'] : 'images/default-avatar.png'; ?>" alt="<?php echo $story['author_name']; ?>">
+                      <img src="<?php echo !empty($story['author_image']) ? $story['author_image'] : 'images/default-avatar.jpg'; ?>" alt="<?php echo $story['author_name']; ?>">
                       <span><?php echo $story['author_name']; ?></span>
                     </div>
                     <div class="story-stats">
